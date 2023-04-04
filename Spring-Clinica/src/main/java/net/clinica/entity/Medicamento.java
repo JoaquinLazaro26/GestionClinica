@@ -29,8 +29,6 @@ public class Medicamento {
 	private double precio;
 	@Column(name = "fec_fab_med")
 	private LocalDate fecha;
-	@Column(name = "cod_tipo")
-	private int codigoTipo;
 	//Implementar la Bidireciones
 	//Muchos a uno
 	
@@ -84,14 +82,6 @@ public class Medicamento {
 
 	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
-	}
-
-	public int getCodigoTipo() {
-		return codigoTipo;
-	}
-
-	public void setCodigoTipo(int codigoTipo) {
-		this.codigoTipo = codigoTipo;
 	}
 
 	public TipoMedicamento getTipo() {

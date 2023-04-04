@@ -19,6 +19,7 @@ public class TipoMedicamento {
 	private Integer codigo;
 	@Column(name="nom_tipo")
 	private String nombre;
+	
 	@OneToMany(mappedBy = "tipo")
 	private List<Medicamento> listaMedicamentos;
 	

@@ -22,18 +22,14 @@ private Integer codigo;
 private String nombre;
 @Column(name = "ape_med")
 private String apellidos;
-@Column(name = "num_hijos")
-private int hijos;
 @Column(name = "sue_med")
 private double sueldo;
-@Column(name = "fec_nac")
+@Column(name = "fec_nac_med")
 private LocalDate fechaNac;
 @Column(name = "sexo_med")
 private String sexo;
 @Column(name = "est_civ_med")
 private String estado;
-@Column(name = "cod_espe")
-private int codigoespe;
 
 @ManyToOne
 @JoinColumn(name = "cod_espe")
@@ -61,14 +57,6 @@ public String getApellidos() {
 
 public void setApellidos(String apellidos) {
 	this.apellidos = apellidos;
-}
-
-public int getHijos() {
-	return hijos;
-}
-
-public void setHijos(int hijos) {
-	this.hijos = hijos;
 }
 
 public double getSueldo() {
@@ -101,14 +89,6 @@ public String getEstado() {
 
 public void setEstado(String estado) {
 	this.estado = estado;
-}
-
-public int getCodigoespe() {
-	return codigoespe;
-}
-
-public void setCodigoespe(int codigoespe) {
-	this.codigoespe = codigoespe;
 }
 
 public Especialidad getEspecialidad() {
