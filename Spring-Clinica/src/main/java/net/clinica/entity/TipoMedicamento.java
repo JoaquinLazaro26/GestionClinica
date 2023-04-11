@@ -2,6 +2,8 @@ package net.clinica.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,6 +23,7 @@ public class TipoMedicamento {
 	private String nombre;
 	
 	@OneToMany(mappedBy = "tipo")
+	@JsonIgnore
 	private List<Medicamento> listaMedicamentos;
 	
 	public Integer getCodigo() {
