@@ -1,7 +1,7 @@
 package net.clinica.controller;
 
-import java.awt.print.Printable;
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import jakarta.websocket.server.PathParam;
 import net.clinica.entity.Medicamento;
 import net.clinica.entity.TipoMedicamento;
+import net.clinica.service.LaboratorioService;
 import net.clinica.service.MedicamentoService;
 import net.clinica.service.TipoService;
 
@@ -25,15 +25,22 @@ public class MedicamentoController {
 	private MedicamentoService servicioMedicamento;
 	@Autowired
 	private TipoService serTipo;
+	@Autowired
+	private LaboratorioService serLab;
 	
 	@RequestMapping("/lista")
 	public String index(Model model) {
 		//Crear un atributo
 		model.addAttribute("medicamentos",servicioMedicamento.listarTodosMedicamentos());
-		model.addAttribute("tipos", serTipo.listartodoTipoMedicamentos());
+		model.addAttribute("laboratorios", serLab.listartodosLaboratorio());
+		
 		return "medicamento";
 	}
-	
+	@RequestMapping("/listarPorLab")
+	@ResponseBody
+	public List<TipoMedicamento> listarPorLab(@RequestParam("codigo") Integer cod) {
+		return serTipo.ListarPorLaboratorio(cod);
+	}
 	
 	
 	//Asignación de branches ("/medicamento/registrar") URL
@@ -92,9 +99,13 @@ public class MedicamentoController {
 		return servicioMedicamento.buscarPorId(cod);
 	}
 	
-	@RequestMapping("/eliminar/{id}")
-	public void eliminarMedicamentoPorCodigo(@PathParam("id")Integer cod) {
+	//URL para eliminar por código
+	
+	@RequestMapping("/eliminar")
+	public String eliminarMedicamentoPorCodigo(@RequestParam("codigo") Integer cod, RedirectAttributes redirect) {
 		servicioMedicamento.Eliminar(cod);
+		redirect.addFlashAttribute("MENSAJE","Medicamento eliminado");
+		return "redirect:/medicamento/lista";
 	}
 	
 	

@@ -9,54 +9,56 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table (name="tb_tipo_medicamento")
-public class TipoMedicamento {
+@Table (name="tb_laboratorio")
+public class Laboratorio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="cod_tipo")
+	@Column(name="id_lab")
 	private Integer codigo;
-	@Column(name="nom_tipo")
+	@Column(name="nom_lab")
 	private String nombre;
+	@Column (name="dir_lab")
+	private String direccion;
 	
-	@OneToMany(mappedBy = "tipo")
+	@OneToMany(mappedBy = "laboratorio")
 	@JsonIgnore
-	private List<Medicamento> listaMedicamentos;
-	
-	@ManyToOne
-	@JoinColumn(name = "cod_lab")
-	private Laboratorio laboratorio;
-	
+	private List<TipoMedicamento> listaTipoMedicamentos;
+
 	public Integer getCodigo() {
 		return codigo;
 	}
+
 	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public List<Medicamento> getListaMedicamentos() {
-		return listaMedicamentos;
+
+	public String getDireccion() {
+		return direccion;
 	}
-	public void setListaMedicamentos(List<Medicamento> listaMedicamentos) {
-		this.listaMedicamentos = listaMedicamentos;
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
-	public Laboratorio getLaboratorio() {
-		return laboratorio;
+
+	public List<TipoMedicamento> getListaTipoMedicamentos() {
+		return listaTipoMedicamentos;
 	}
-	public void setLaboratorio(Laboratorio laboratorio) {
-		this.laboratorio = laboratorio;
+
+	public void setListaTipoMedicamentos(List<TipoMedicamento> listaTipoMedicamentos) {
+		this.listaTipoMedicamentos = listaTipoMedicamentos;
 	}
-	
 	
 	
 }

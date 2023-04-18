@@ -5,19 +5,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import net.clinica.dao.LaboratorioRepository;
 import net.clinica.dao.TipoRepository;
+import net.clinica.entity.Laboratorio;
 import net.clinica.entity.TipoMedicamento;
 
 //Clase para listar TipoMedicamentos en una lista desplegable
 @Service
-public class TipoService{
+public class LaboratorioService{
 	 @Autowired
-	private TipoRepository repo;
-	public List<TipoMedicamento> listartodoTipoMedicamentos(){
+	private LaboratorioRepository repo;
+	public List<Laboratorio> listartodosLaboratorio(){
 		return repo.findAll();
 	}
-	
-	public List<TipoMedicamento> ListarPorLaboratorio(Integer codLab){
-		return repo.findAllByLaboratorio(codLab);
-	};
 }
